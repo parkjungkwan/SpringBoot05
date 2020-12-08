@@ -7,6 +7,7 @@ import java.util.Map;
 import com.example.demo.domains.ArticleDto;
 import com.example.demo.services.ArticleService;
 import com.example.demo.utils.Printer;
+import com.example.demo.utils.Proxy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ArticleController{
     @Autowired Printer printer;
     @Autowired ArticleService articleService;
+    @Autowired Proxy px;
     
     @PostMapping("/articles")
     public Map<?,?> write(@RequestBody ArticleDto article){
-        var map = new HashMap<>();
+        var map = px.hashmap();
         int result = articleService.write(article);
         if(result == 1){
             map.put("message", "SUCCESS");
@@ -32,7 +34,7 @@ public class ArticleController{
     }
     @GetMapping("/articles")
     public Map<?,?> list(){
-        var map = new HashMap<>();
+        var map = px.hashmap();
         List<ArticleDto> list = articleService.list();    
         map.put("list", list);
         return map;
