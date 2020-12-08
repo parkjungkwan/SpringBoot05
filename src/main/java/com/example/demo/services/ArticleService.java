@@ -13,5 +13,7 @@ public interface ArticleService {
 	public int write(ArticleDto article);
 
 	public List<ArticleDto> list();
+
+	public int crawling(String string);
    
 }

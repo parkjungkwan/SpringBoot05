@@ -30,5 +30,11 @@ public class ArticleServiceImpl implements ArticleService {
         // TODO Auto-generated method stub
         return null;
     }
+
+    @Override
+    public int crawling(String string) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
     
 }
