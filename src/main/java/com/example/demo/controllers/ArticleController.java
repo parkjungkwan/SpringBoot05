@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.example.demo.domains.ArticleDto;
@@ -8,6 +9,7 @@ import com.example.demo.services.ArticleService;
 import com.example.demo.utils.Printer;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +28,13 @@ public class ArticleController{
         }else{
             map.put("message", "FAILURE");
         }
+        return map;
+    }
+    @GetMapping("/articles")
+    public Map<?,?> list(){
+        var map = new HashMap<>();
+        List<ArticleDto> list = articleService.list();    
+        map.put("list", list);
         return map;
     }
     
