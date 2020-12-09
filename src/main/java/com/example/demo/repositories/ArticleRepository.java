@@ -9,4 +9,6 @@ public interface ArticleRepository {
 
 	public int insert(ArticleDto article);
 
+	public int count();
+
 }

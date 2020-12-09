@@ -6,4 +6,7 @@
         insert into articles (writer_id, title, content, reg_date, count) 
         values (#{writerId}, #{title}, #{content}, #{regDate}, #{count})
    </insert>
+   <select id="count" resultType="int">
+        select count(*) from articles 
+   </select>
 </mapper>

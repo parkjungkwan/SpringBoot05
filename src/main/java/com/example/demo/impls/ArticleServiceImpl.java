@@ -10,6 +10,8 @@ import com.example.demo.domains.ArticleDto;
 import com.example.demo.repositories.ArticleRepository;
 import com.example.demo.services.ArticleService;
 import com.example.demo.utils.Printer;
+import com.example.demo.utils.UserGenerator;
+import com.example.demo.utils.Box;
 import com.example.demo.utils.Crawler;
 
 @Service
@@ -17,6 +19,8 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired ArticleRepository articleRepository;
     @Autowired Printer printer;
     @Autowired Crawler crawler;
+    @Autowired UserGenerator ug;
+    @Autowired ArticleDto article;
     @Override
     public int write(ArticleDto article) {
         article.setRegDate(LocalDate.now().toString());
@@ -32,8 +36,27 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public int crawling(String url) {
-        crawler.crawling(url);
-        return 0;
+        var artBox = new Box<ArticleDto>();
+        artBox = crawler.crawling(url);
+        System.out.println("box size: "+artBox.size());
+        
+        for(int i =0; i< artBox.size(); i++){
+            article = new ArticleDto();
+            article = artBox.get(i);
+            System.out.println("Article : "+article.toString());
+            String userid = ug.makeUserid();
+            System.out.println("글쓴이 아이디: "+userid);
+            article.setWriterId(ug.makeUserid()); 
+            write(artBox.get(i));
+        }
+        return count();
     }
+
+    @Override
+    public int count() {
+        return articleRepository.count();
+    }
+    
+
     
 }

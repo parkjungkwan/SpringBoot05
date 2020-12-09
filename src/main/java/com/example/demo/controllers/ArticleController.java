@@ -41,11 +41,17 @@ public class ArticleController{
     @GetMapping("/articles/crawling/{site}")
     public Map<?,?> crawling(@PathVariable String site){
         var map = px.hashmap();
-        switch(site){
-            case "bugs":
-            map.put("count", articleService.crawling("https://music.bugs.co.kr/recomreview?&order=listorder&page=2"));
-            break;
+        var count = articleService.count();
+        if(count == 0){
+            switch(site){
+                case "bugs":
+                map.put("count", articleService.crawling("https://music.bugs.co.kr/recomreview?&order=listorder&page=2"));
+                break;
+            }
+        }else{
+            map.put("count", count);
         }
+       
         return map;
     }
     
