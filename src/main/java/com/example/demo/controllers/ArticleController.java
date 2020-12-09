@@ -32,10 +32,13 @@ public class ArticleController{
     }
     @GetMapping("/articles")
     public Map<?,?> list(){
-        var m = new HashMap<>();
+        printer.accept("---- 목록 진입 ----");
         var map = px.hashmap();
-       
-        map.put("list", articleService.list());
+        List<ArticleDto> l = articleService.list();
+        System.out.println("목록 수: "+l.size());
+        map.put("list", l);
+        map.put("count", articleService.count());
+
         return map;
     }
     @GetMapping("/articles/crawling/{site}")
@@ -51,7 +54,6 @@ public class ArticleController{
         }else{
             map.put("count", count);
         }
-       
         return map;
     }
     

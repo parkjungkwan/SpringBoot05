@@ -31,7 +31,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<ArticleDto> list() {
         
-        return null;
+        return articleRepository.selectAll();
     }
 
     @Override
@@ -47,6 +47,7 @@ public class ArticleServiceImpl implements ArticleService {
             String userid = ug.makeUserid();
             System.out.println("글쓴이 아이디: "+userid);
             article.setWriterId(ug.makeUserid()); 
+            article.setCount("0");
             write(artBox.get(i));
         }
         return count();
