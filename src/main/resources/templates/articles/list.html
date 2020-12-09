@@ -33,22 +33,26 @@
     <script>
         $('#home').click(e => { location.href="/"})
         $.getJSON('/articles', d => {
-            
             if(d.count != 0 ){
                 const list = d.list
-                alert(`목록 성공`)
                 let tr = ''
                 let i = 0
                 for(; i< d.count; i++){
                     tr += '<tr>'
                         +'<td class="text-center">'+list[i].artNum+'</td>'
-                        +'<td class="text-center">'+list[i].title+'</td>'
+                        +'<td class="text-center"><a class="title" id="'+list[i].artNum+'" href="#" >'+list[i].title+'</a></td>'
                         +'<td class="text-center">'+list[i].writerId+'</td>'
                         +'<td class="text-center">'+list[i].regDate+'</td>'
                         +'<td class="text-center">'+list[i].count+'</td>'
                         +'</tr>'
                 }
                 $('#tb').html(tr)
+                $('.title').each(function(i) {
+                    $(this).click(e => {
+                        e.preventDefault()
+                        alert(`${i} 번의 ID:  ${this.id}`)
+                    })
+                })
             }else{
                 alert(`목록 실패`)
                 $(".artNum").text('조회결과 없음')
@@ -57,6 +61,7 @@
                 $(".regDate").text('조회결과 없음')
                 $(".count").text('조회결과 없음')
             }
+            
         })
        
    </script>
