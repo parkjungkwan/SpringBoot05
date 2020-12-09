@@ -2,8 +2,10 @@ package com.example.demo.utils;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.BiPredicate;
@@ -41,11 +43,6 @@ public class Proxy {
         Supplier<Map<String, Object>> s = HashMap::new;
         return s.get();
     }
-    public Map<String, Object> put(){
-        // Map<String, String> map = new HashMap<>();
-        Supplier<Map<String, Object>> s = HashMap::new;
-        return s.get();
-    }
     public String message(int i){
         return (i == 1) ? "SUCCESS": "FAILURE";
     }
@@ -59,6 +56,10 @@ public class Proxy {
     public File mkfile(File t, String u){
         BiFunction<File, String, File> f = File::new;
         return f.apply(t, u);
+    }
+    public List<String> list(){
+        Supplier<List<String>> s = ArrayList::new;
+        return s.get();
     }
 
 }

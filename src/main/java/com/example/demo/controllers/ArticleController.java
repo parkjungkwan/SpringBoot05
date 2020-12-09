@@ -26,20 +26,25 @@ public class ArticleController{
     public Map<?,?> write(@RequestBody ArticleDto article){
         var map = px.hashmap();
         map.put("message", px.message(articleService.write(article)));
+
+        
         return map;
     }
     @GetMapping("/articles")
     public Map<?,?> list(){
+        var m = new HashMap<>();
         var map = px.hashmap();
+       
         map.put("list", articleService.list());
         return map;
     }
     @GetMapping("/articles/crawling/{site}")
     public Map<?,?> crawling(@PathVariable String site){
         var map = px.hashmap();
-        if(px.equals(site, "bugs")){
-            int count = articleService.crawling("https://music.bugs.co.kr/recomreview?&order=listorder&page=2");
-            map.put("count", count);
+        switch(site){
+            case "bugs":
+            map.put("count", articleService.crawling("https://music.bugs.co.kr/recomreview?&order=listorder&page=2"));
+            break;
         }
         return map;
     }

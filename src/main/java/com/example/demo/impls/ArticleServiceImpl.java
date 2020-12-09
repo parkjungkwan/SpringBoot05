@@ -10,14 +10,13 @@ import com.example.demo.domains.ArticleDto;
 import com.example.demo.repositories.ArticleRepository;
 import com.example.demo.services.ArticleService;
 import com.example.demo.utils.Printer;
+import com.example.demo.utils.Crawler;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
-    @Autowired
-    ArticleRepository articleRepository;
-    @Autowired
-    Printer printer;
-
+    @Autowired ArticleRepository articleRepository;
+    @Autowired Printer printer;
+    @Autowired Crawler crawler;
     @Override
     public int write(ArticleDto article) {
         article.setRegDate(LocalDate.now().toString());
@@ -27,13 +26,13 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<ArticleDto> list() {
-        // TODO Auto-generated method stub
+        
         return null;
     }
 
     @Override
-    public int crawling(String string) {
-        // TODO Auto-generated method stub
+    public int crawling(String url) {
+        crawler.crawling(url);
         return 0;
     }
     
