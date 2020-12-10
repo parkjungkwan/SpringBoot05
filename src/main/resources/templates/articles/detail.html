@@ -15,7 +15,6 @@
 <body>
     <h1> Detail </h1>
     <a id="home" href="#"> Go Home </a>
-    <a id="update" href="#"> 수정화면 이동 </a>
     <table class="table">
         <thead>
             <tr class="table-active">
@@ -34,6 +33,7 @@
                       
                   </div>
                 </td> </tr>
+                <tr id="toggle"><td></td></tr>
         </tbody>
     </table>
 
@@ -46,11 +46,14 @@
             $('#regDate').text(d.regDate)
             $('#count').text(d.count)
             $('#content').text(d.content)
+            $('#toggle').html('<button id="update">수정화면 이동</button>')
             // 수정시에만 작동
             $('#update').click(e => { 
                 $('#title').html('<input type="text" value="'+d.title+'"/>')
                 $('#content').html('<textarea id="content" style="height: 250px">'+d.content+'</textarea>')
                 $('#update').text('수정 화면')
+                $('#toggle').html('<button id="confirm">수정확인</button>')
+
             })
         })
    </script>
