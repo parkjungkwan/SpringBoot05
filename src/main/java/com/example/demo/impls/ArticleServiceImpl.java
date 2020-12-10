@@ -73,4 +73,9 @@ public class ArticleServiceImpl implements ArticleService {
     public int update(ArticleDto article) {
         return articleRepository.update(article);
     }
+
+    @Override
+    public int delete(ArticleDto article) {
+        return articleRepository.delete(article);
+    }
 }

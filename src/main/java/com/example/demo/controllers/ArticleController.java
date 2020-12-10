@@ -10,6 +10,7 @@ import com.example.demo.utils.Printer;
 import com.example.demo.utils.Proxy;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -72,6 +73,14 @@ public class ArticleController{
         printer.accept("수정할 데이터: "+article.toString());
         var map = px.hashmap();
         int result = articleService.update(article);
+        map.put("message", (result == 1) ? "SUCCESS" : "FAILURE");
+        return map;
+    }
+    @DeleteMapping("/articles")
+    public Map<?,?> delete(@RequestBody ArticleDto article){
+        printer.accept("삭제할 데이터 ID: "+article.getArtNum());
+        var map = px.hashmap();
+        int result = articleService.delete(article);
         map.put("message", (result == 1) ? "SUCCESS" : "FAILURE");
         return map;
     }

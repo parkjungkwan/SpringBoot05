@@ -36,4 +36,7 @@
      update articles set title = #{title}, content = #{content}
      where art_num like #{artNum}
    </update>
+   <delete id="delete" parameterType="com.example.demo.domains.ArticleDto">
+     delete from articles where art_num like #{artNum}
+   </delete>
 </mapper>
