@@ -12,6 +12,7 @@ public interface ArticleRepository {
 	public int insert(ArticleDto article);
 	public int count();
 	public List<ArticleDto> selectAll();
+	public ArticleDto selectById(String artNum);
 
 
 }

@@ -18,4 +18,15 @@
                count 
      from articles
    </select>
+   <select id="selectById" resultType="com.example.demo.domains.ArticleDto" 
+                         parameterType="string" >
+     select art_num artNum, 
+               writer_id writerId, 
+               title, 
+               content, 
+               reg_date regDate, 
+               count 
+     from articles
+     where art_num like #{value}
+   </select>
 </mapper>

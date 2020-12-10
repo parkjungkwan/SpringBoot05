@@ -12,7 +12,6 @@ public class StringTest {
         int o = Integer.parseInt(one);
         int t = Integer.parseInt(two);
 
-
         String sum = String.valueOf(o + t);
         // System.out.println("1 + 2 = "+sum);
 

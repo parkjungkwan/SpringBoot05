@@ -38,8 +38,11 @@ public class ArticleController{
         System.out.println("목록 수: "+l.size());
         map.put("list", l);
         map.put("count", articleService.count());
-
         return map;
+    }
+    @GetMapping("/articles/{artNum}")
+    public ArticleDto detail(@PathVariable String artNum) {
+        return articleService.getArticleById(artNum);
     }
     @GetMapping("/articles/crawling/{site}")
     public Map<?,?> crawling(@PathVariable String site){

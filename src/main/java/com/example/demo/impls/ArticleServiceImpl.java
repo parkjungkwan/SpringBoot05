@@ -21,6 +21,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired Crawler crawler;
     @Autowired UserGenerator ug;
     @Autowired ArticleDto article;
+  
     @Override
     public int write(ArticleDto article) {
         article.setRegDate(LocalDate.now().toString());
@@ -56,6 +57,11 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public int count() {
         return articleRepository.count();
+    }
+
+    @Override
+    public ArticleDto getArticleById(String artNum) {
+        return articleRepository.selectById(artNum);
     }
     
 
