@@ -32,4 +32,8 @@
    <update id="updateCount" parameterType="string">
      update articles set count = count+1 where art_num like #{value}
    </update>
+   <update id="update" parameterType="com.example.demo.domains.ArticleDto">
+     update articles set title = #{title}, content = #{content}
+     where art_num like #{artNum}
+   </update>
 </mapper>

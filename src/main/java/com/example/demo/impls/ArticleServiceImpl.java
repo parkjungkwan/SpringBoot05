@@ -68,4 +68,9 @@ public class ArticleServiceImpl implements ArticleService {
     public int increaseCount(String artNum) {
         return articleRepository.updateCount(artNum);
     }
+
+    @Override
+    public int update(ArticleDto article) {
+        return articleRepository.update(article);
+    }
 }

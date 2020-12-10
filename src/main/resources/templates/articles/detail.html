@@ -49,10 +49,35 @@
             $('#toggle').html('<button id="update">수정화면 이동</button>')
             // 수정시에만 작동
             $('#update').click(e => { 
-                $('#title').html('<input type="text" value="'+d.title+'"/>')
-                $('#content').html('<textarea id="content" style="height: 250px">'+d.content+'</textarea>')
+                $('#title').html('<input id="update-title" type="text" value="'+d.title+'"/>')
+                $('#content').html('<textarea id="update-content" style="height: 250px">'+d.content+'</textarea>')
                 $('#update').text('수정 화면')
                 $('#toggle').html('<button id="confirm">수정확인</button>')
+                $('#confirm').click(e => {
+                    e.preventDefault()
+                    $.ajax({
+                        url: `/articles`,
+                        type: 'PUT',
+                        data: JSON.stringify({
+                            artNum: d.artNum,
+                            writerId: d.writerId,
+                            title: $('#update-title').val(),
+                            content: $('#update-content').val(),
+                            regDate: d.regDate,
+                            count: d.count
+                        }),
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        success: d => {
+                            if(d.message === 'SUCCESS'){
+                                location.href = '/move/articles/detail'
+                            }else{
+                                alert(`수정 실패`)
+                            }
+                        },
+                        error: e => {alert(`수정 실패: ${e}`)}
+                    })
+                })
 
             })
         })

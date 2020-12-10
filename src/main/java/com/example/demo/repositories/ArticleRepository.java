@@ -14,6 +14,7 @@ public interface ArticleRepository {
 	public List<ArticleDto> selectAll();
 	public ArticleDto selectById(String artNum);
 	public int updateCount(String artNum);
+	public int update(ArticleDto article);
 
 
 }
