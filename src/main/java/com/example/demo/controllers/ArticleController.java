@@ -42,6 +42,7 @@ public class ArticleController{
     }
     @GetMapping("/articles/{artNum}")
     public ArticleDto detail(@PathVariable String artNum) {
+        articleService.increaseCount(artNum);
         return articleService.getArticleById(artNum);
     }
     @GetMapping("/articles/crawling/{site}")

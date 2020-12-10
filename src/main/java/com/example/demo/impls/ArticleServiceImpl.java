@@ -63,7 +63,9 @@ public class ArticleServiceImpl implements ArticleService {
     public ArticleDto getArticleById(String artNum) {
         return articleRepository.selectById(artNum);
     }
-    
 
-    
+    @Override
+    public void increaseCount(String artNum) {
+        articleRepository.updateCount(artNum);
+    }
 }

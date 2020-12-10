@@ -29,4 +29,7 @@
      from articles
      where art_num like #{value}
    </select>
+   <update id="updateCount" parameterType="string">
+     update articles set count = count+1 where art_num like #{value}
+   </update>
 </mapper>
