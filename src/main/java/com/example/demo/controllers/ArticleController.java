@@ -42,7 +42,6 @@ public class ArticleController{
     }
     @GetMapping("/articles/{artNum}")
     public ArticleDto detail(@PathVariable String artNum) {
-        articleService.increaseCount(artNum);
         return articleService.getArticleById(artNum);
     }
     @GetMapping("/articles/crawling/{site}")
@@ -58,6 +57,13 @@ public class ArticleController{
         }else{
             map.put("count", count);
         }
+        return map;
+    }
+    @GetMapping("/articles/{artNum}/count")
+    public Map<?,?> increaseCount(@PathVariable String artNum){
+        var map = px.hashmap();
+        int result = articleService.increaseCount(artNum);
+        map.put("message", (result == 1) ? "SUCCESS" : "FAILURE");
         return map;
     }
     

@@ -30,9 +30,9 @@
             
             <tr><td colspan="4" style="width: 100%; height: 30px"><span id="title"></span></td> </tr>
             <tr><td colspan="4" style="width: 100%">
-                  <textarea id="content" style="height: 300px">
+                  <div id="content" style="height: 300px">
                       
-                  </textarea>
+                  </div>
                 </td> </tr>
         </tbody>
     </table>
@@ -45,11 +45,11 @@
             $('#title').text(d.title)
             $('#regDate').text(d.regDate)
             $('#count').text(d.count)
-            $('#content').val(d.content)
+            $('#content').text(d.content)
             // 수정시에만 작동
             $('#update').click(e => { 
                 $('#title').html('<input type="text" value="'+d.title+'"/>')
-                $('#content').val(d.content)
+                $('#content').html('<textarea id="content" style="height: 250px">'+d.content+'</textarea>')
                 $('#update').text('수정 화면')
             })
         })

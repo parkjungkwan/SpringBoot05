@@ -13,7 +13,7 @@ public interface ArticleRepository {
 	public int count();
 	public List<ArticleDto> selectAll();
 	public ArticleDto selectById(String artNum);
-	public void updateCount(String artNum);
+	public int updateCount(String artNum);
 
 
 }
